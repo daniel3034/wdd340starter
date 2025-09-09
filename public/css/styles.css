@@ -1,6 +1,257 @@
-/******* Change Box Model ***************/
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+/* Mobile-first styles */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: url("/images/site/checkerboard.jpg")  repeat;
+  margin: 0;
+  color: #222;
+  min-width: 0;
+}
+
+#wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  background: #fff;
+  border: #0077cc 4px solid;
+  border-radius: 10px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0 0.5rem 0;
+  border-bottom: 2px solid #222;
+}
+
+.siteName a {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+  text-decoration: none;
+}
+
+#tools a {
+  font-size: 1rem;
+  color: #0077cc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  background: #222;
+  border-radius: 6px;
+  width: 100%;
+}
+
+nav ul li {
+  flex: 1;
+}
+
+nav ul li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: background 0.2s;
+  text-align: center;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+  background: #0077cc;
+  color: #fff;
+}
+
+main {
+  margin-top: 1rem;
+}
+
+.main-content h3 {
+  margin-bottom: 1rem;
+}
+
+.home-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.delorean-section {
+  background: #eaf6ff;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.delorean-heading {
+  color: #0077cc;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.delorean-section img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.delorean-info {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.delorean-info h2 {
+  color: #0077cc;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.delorean-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.own-btn {
+  background: #0077cc;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.reviews-section {
+  margin-bottom: 1.5rem;
+}
+
+.reviews-section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.reviews-section ul {
+  list-style: disc inside;
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.upgrades-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.upgrades-section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.upgrade-item {
+  background: #eaf6ff;
+  border-radius: 8px;
+  padding: 0.5rem;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.upgrade-item img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.upgrade-item a {
+  color: #0077cc;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin: 2rem 0 1rem 0;
+}
+
+/* Large screen styles */
+@media screen and (min-width: 900px) {
+  #wrapper {
+    max-width: 900px;
+    border: #0077cc 6px solid;
+    padding: 2rem 3rem;
+    background: #fff;
+  }
+
+  .delorean-section {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2rem;
+  }
+
+  .delorean-section img {
+    max-width: 320px;
+    margin-bottom: 0;
+  }
+
+  .delorean-info {
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+.main-content {
+    display: flex;
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  .upgrades-column,
+  .reviews-column {
+    flex: 1;
+    background: #f8fbff;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .upgrades-column h3,
+  .reviews-column h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #222;
+  }
+
+  .upgrades-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
 }
