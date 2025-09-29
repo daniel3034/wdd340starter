@@ -19,7 +19,7 @@
 
   <label for="account_password">Password</label>
   <input type="password" id="account_password" name="account_password" 
-         minlength="12" required
+         minlength="12" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
          title="Password must be at least 12 characters, include 1 uppercase, 1 number, and 1 special character.">
 
   <button type="submit" class="btn">Register</button>
