@@ -7,6 +7,15 @@
   </div>
 <% } %>
 
+<!-- Display server-side validation errors -->
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
 <form action="/account/register" method="post" class="registration-form">
   <label for="account_firstname">First name</label>
   <input type="text" id="account_firstname" name="account_firstname" required>
