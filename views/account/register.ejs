@@ -1,0 +1,38 @@
+<h1><%= title %></h1>
+
+<!-- Flash messages -->
+<% if (messages().length > 0) { %>
+  <div class="messages">
+    <%= messages() %>
+  </div>
+<% } %>
+
+<form action="/account/register" method="post" class="registration-form">
+  <label for="account_firstname">First name</label>
+  <input type="text" id="account_firstname" name="account_firstname" required>
+
+  <label for="account_lastname">Last name</label>
+  <input type="text" id="account_lastname" name="account_lastname" required>
+
+  <label for="account_email">Email address</label>
+  <input type="email" id="account_email" name="account_email" required>
+
+  <label for="account_password">Password</label>
+  <input type="password" id="account_password" name="account_password" 
+         minlength="12" required
+         title="Password must be at least 12 characters, include 1 uppercase, 1 number, and 1 special character.">
+
+  <button type="submit" class="btn">Register</button>
+</form>
+
+<!-- Optional password toggle -->
+<script>
+  const passwordField = document.getElementById("account_password")
+  const toggleBtn = document.createElement("button")
+  toggleBtn.type = "button"
+  toggleBtn.textContent = "Show/Hide"
+  toggleBtn.addEventListener("click", () => {
+    passwordField.type = passwordField.type === "password" ? "text" : "password"
+  })
+  passwordField.insertAdjacentElement("afterend", toggleBtn)
+</script>
