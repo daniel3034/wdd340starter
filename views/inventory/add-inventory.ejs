@@ -1,0 +1,94 @@
+<main>
+  <%- messages() %>
+
+  <h1>Add New Inventory Item</h1>
+  <p>Fill in the fields below. Required fields are marked.</p>
+
+  <% if (locals.errors) { %>
+    <ul class="errors">
+      <% locals.errors.forEach(err => { %>
+        <li><%= err.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <form id="addInventoryForm" action="/inv/add-inventory" method="post" novalidate>
+    <label for="classificationList">Classification *</label>
+    <!-- Render the select built by utilities; use unescaped tag so the <select> is injected -->
+    <div>
+      <%- locals.classificationList %>
+    </div>
+
+    <label for="invMake">Make *</label>
+    <input
+      type="text"
+      id="invMake"
+      name="inv_make"
+      required
+      minlength="2"
+      pattern="^[A-Za-z0-9\s\-\']+$"
+      title="Letters, numbers, spaces, hyphens and apostrophes only"
+      value="<%= locals.inv_make || '' %>"
+    >
+
+    <label for="invModel">Model *</label>
+    <input
+      type="text"
+      id="invModel"
+      name="inv_model"
+      required
+      minlength="1"
+      value="<%= locals.inv_model || '' %>"
+    >
+
+    <label for="invYear">Year *</label>
+    <input
+      type="number"
+      id="invYear"
+      name="inv_year"
+      required
+      min="1886"
+      max="<%= new Date().getFullYear() + 1 %>"
+      value="<%= locals.inv_year || '' %>"
+    >
+
+    <label for="invPrice">Price (COP or currency) *</label>
+    <input
+      type="number"
+      id="invPrice"
+      name="inv_price"
+      required
+      step="0.01"
+      min="0"
+      value="<%= locals.inv_price || '' %>"
+    >
+
+    <label for="invDescription">Description *</label>
+    <textarea
+      id="invDescription"
+      name="inv_description"
+      required
+      minlength="10"
+    ><%= locals.inv_description || '' %></textarea>
+
+    <label for="invImage">Image path (use path to images/vehicles/...) *</label>
+    <input
+      type="text"
+      id="invImage"
+      name="inv_image"
+      required
+      value="<%= locals.inv_image || '/images/vehicles/no-image-available.png' %>"
+    >
+
+    <label for="invThumbnail">Thumbnail path (images/vehicles/...) *</label>
+    <input
+      type="text"
+      id="invThumbnail"
+      name="inv_thumbnail"
+      required
+      value="<%= locals.inv_thumbnail || '/images/vehicles/no-image-available-tn.png' %>"
+    >
+
+    <button type="submit">Add Vehicle</button>
+  </form>
+</main>
