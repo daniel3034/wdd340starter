@@ -62,16 +62,19 @@ Util.buildClassificationGrid = async function(data){
  * ************************** */
 Util.buildDetailView = function(item) {
   return `
-    <div class="vehicle-detail">
-      <img src="${item.inv_image}" alt="Image of ${item.inv_make} ${item.inv_model}" class="vehicle-image">
-      <div class="vehicle-info">
+    <main class="vehicle-detail">
+      <figure>
+        <img src="${item.inv_image}" alt="Image of ${item.inv_make} ${item.inv_model}" class="vehicle-image">
+        <figcaption>${item.inv_year} ${item.inv_make} ${item.inv_model}</figcaption>
+      </figure>
+      <section class="vehicle-info">
         <h2>${item.inv_year} ${item.inv_make} ${item.inv_model}</h2>
-        <p><strong>Price:</strong> $${new Intl.NumberFormat().format(item.inv_price)}</p>
-        <p><strong>Mileage:</strong> ${new Intl.NumberFormat().format(item.inv_miles)} miles</p>
-        <p><strong>Color:</strong> ${item.inv_color}</p>
-        <p><strong>Description:</strong> ${item.inv_description}</p>
-      </div>
-    </div>
+        <p><strong>Price:</strong> <span>&#36;${new Intl.NumberFormat().format(item.inv_price)}</span></p>
+        <p><strong>Mileage:</strong> <span>${new Intl.NumberFormat().format(item.inv_miles)} miles</span></p>
+        <p><strong>Color:</strong> <span>${item.inv_color}</span></p>
+        <p><strong>Description:</strong> <span>${item.inv_description}</span></p>
+      </section>
+    </main>
   `
 }
 
