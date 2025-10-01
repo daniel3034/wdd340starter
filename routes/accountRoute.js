@@ -30,7 +30,7 @@ router.post(
 // Default route for logged in users
 router.get(
   "/",
-  utilities.handleErrors(accountController.buildAccountManagement)
+  utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement)
 )
 
 module.exports = router
