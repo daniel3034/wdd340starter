@@ -1,0 +1,77 @@
+<main>
+  <h1><%= title %></h1>
+
+  <!-- Flash messages -->
+  <%- messages() %>
+
+  <!-- Display errors -->
+  <% if (locals.errors) { %>
+    <ul class="errors">
+      <% locals.errors.forEach(err => { %>
+        <li><%= err.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <!-- Account Update Form -->
+  <section>
+    <h2>Update Account Information</h2>
+    <form id="updateAccountForm" action="/account/update-account" method="post" novalidate>
+      <label for="account_firstname">First Name *</label>
+      <input
+        type="text"
+        id="account_firstname"
+        name="account_firstname"
+        required
+        minlength="1"
+        value="<%= locals.account_firstname || '' %>"
+      >
+
+      <label for="account_lastname">Last Name *</label>
+      <input
+        type="text"
+        id="account_lastname"
+        name="account_lastname"
+        required
+        minlength="2"
+        value="<%= locals.account_lastname || '' %>"
+      >
+
+      <label for="account_email">Email *</label>
+      <input
+        type="email"
+        id="account_email"
+        name="account_email"
+        required
+        value="<%= locals.account_email || '' %>"
+      >
+
+      <input type="hidden" name="account_id" value="<%= locals.account_id %>">
+      
+      <button type="submit">Update Account</button>
+    </form>
+  </section>
+
+  <!-- Password Change Form -->
+  <section>
+    <h2>Change Password</h2>
+    <p><strong>Password requirements:</strong> Must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</p>
+    
+    <form id="changePasswordForm" action="/account/update-password" method="post" novalidate>
+      <label for="account_password">New Password *</label>
+      <input
+        type="password"
+        id="account_password"
+        name="account_password"
+        required
+        minlength="12"
+        pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':\"\\|,.<>\/?]).{12,}$"
+        title="Password must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character"
+      >
+
+      <input type="hidden" name="account_id" value="<%= locals.account_id %>">
+      
+      <button type="submit">Change Password</button>
+    </form>
+  </section>
+</main>
