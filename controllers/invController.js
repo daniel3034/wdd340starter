@@ -49,12 +49,17 @@ invCont.triggerError = async function (req, res, next) {
 * *************************************** */
 async function buildManagement(req, res, next) {
   let nav = await utilities.getNav();
+  
+  // Add the classification select list
+  const classificationSelect = await utilities.buildClassificationList();
+  
   res.render("inventory/management", {
     title: "Inventory Management",
     nav,
+    classificationSelect, // Add this to pass the select list to the view
     errors: null,
   });
-}
+} 
 
 /* ****************************************
 *  Deliver add-classification view
@@ -183,6 +188,19 @@ async function addInventory(req, res, next) {
   } catch (error) {
     console.error(error);
     next(error);
+  }
+}
+
+/* ***************************
+ *  Return Inventory by Classification As JSON
+ * ************************** */
+invCont.getInventoryJSON = async (req, res, next) => {
+  const classification_id = parseInt(req.params.classification_id)
+  const invData = await invModel.getInventoryByClassificationId(classification_id)
+  if (invData[0].inv_id) {
+    return res.json(invData)
+  } else {
+    next(new Error("No data returned"))
   }
 }
 

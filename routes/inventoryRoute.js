@@ -11,6 +11,9 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 // Vehicle detail route
 router.get("/detail/:invId", utilities.handleErrors(invController.buildDetailView))
 
+// Route to get inventory items by classification_id as JSON
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
 // Intentional error route
 router.get("/trigger-error", utilities.handleErrors(invController.triggerError))
 
