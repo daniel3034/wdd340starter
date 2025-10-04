@@ -91,4 +91,39 @@ async function checkInventoryData(req, res, next) {
   next();
 }
 
-module.exports = { classificationRules, checkClassificationData, inventoryRules, checkInventoryData };
+/* ******************************
+ * Check data and return errors or continue to update inventory item
+ * ***************************** */
+async function checkUpdateData(req, res, next) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    // rebuild classificationList with the selected value so the select remains sticky
+    const classificationSelect = await utilities.buildClassificationList(req.body.classification_id);
+
+    // get the item name for the title
+    const itemName = `${req.body.inv_make} ${req.body.inv_model}`;
+
+    // render edit-inventory view with errors and sticky fields
+    return res.render('inventory/edit-inventory', {
+      title: 'Edit ' + itemName,
+      classificationSelect,
+      nav: await utilities.getNav(),
+      errors: errors.array(),
+      // pass back each field so locals.<field> is available in view
+      inv_id: req.body.inv_id,
+      inv_make: req.body.inv_make,
+      inv_model: req.body.inv_model,
+      inv_year: req.body.inv_year,
+      inv_price: req.body.inv_price,
+      inv_miles: req.body.inv_miles,
+      inv_color: req.body.inv_color,
+      inv_description: req.body.inv_description,
+      inv_image: req.body.inv_image,
+      inv_thumbnail: req.body.inv_thumbnail,
+      classification_id: req.body.classification_id,
+    });
+  }
+  next();
+}
+
+module.exports = { classificationRules, checkClassificationData, inventoryRules, checkInventoryData, checkUpdateData };

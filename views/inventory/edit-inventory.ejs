@@ -12,7 +12,7 @@
     </ul>
   <% } %>
 
-  <form id="editInventoryForm" action="/inv/update" method="post" novalidate>
+  <form id="updateForm" action="/inv/update" method="post" novalidate>
     <label for="classificationList">Classification *</label>
     <!-- Render the select built by utilities; use unescaped tag so the <select> is injected -->
     <div>
@@ -106,9 +106,12 @@
       value="<%= locals.inv_thumbnail || '/images/vehicles/no-image-available-tn.png' %>"
     >
 
-    <!-- Hidden input to pass the inventory ID -->
-    <input type="hidden" name="inv_id" value="<%= locals.inv_id %>">
+    <button type="submit" disabled>Update Vehicle</button>
 
-    <button type="submit">Update Vehicle</button>
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
   </form>
+
+  <script src="/js/inv-update.js"></script>
 </main>
