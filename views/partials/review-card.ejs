@@ -1,0 +1,16 @@
+<div class="review-card">
+  <div class="review-header">
+    <div class="reviewer-info">
+      <strong><%= review.account_firstname %> <%= review.account_lastname %></strong>
+      <span class="review-date"><%= new Date(review.review_date).toLocaleDateString() %></span>
+    </div>
+    <div class="rating-display">
+      <% for (let i = 1; i <= 5; i++) { %>
+        <span class="star <%= i <= review.review_rating ? 'filled' : '' %>">★</span>
+      <% } %>
+    </div>
+  </div>
+  
+  <h4 class="review-title"><%= review.review_title %></h4>
+  <p class="review-text"><%= review.review_text %></p>
+</div>

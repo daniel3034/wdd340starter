@@ -1,0 +1,91 @@
+<main>
+  <h1><%= title %></h1>
+  
+  <!-- Flash messages -->
+  <%- messages() %>
+  
+  <!-- Display validation errors -->
+  <% if (locals.errors) { %>
+    <ul class="errors">
+      <% locals.errors.forEach(err => { %>
+        <li><%= err.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <!-- Vehicle Information -->
+  <div class="vehicle-info-card">
+    <img src="<%= vehicleData.inv_thumbnail %>" alt="<%= vehicleName %>">
+    <div class="vehicle-details">
+      <h2><%= vehicleName %></h2>
+      <p><strong>Price:</strong> $<%= new Intl.NumberFormat('en-US').format(vehicleData.inv_price) %></p>
+    </div>
+  </div>
+
+  <!-- Review Form -->
+  <div class="review-form-container">
+    <h3>Share Your Experience</h3>
+    <form id="reviewForm" action="/reviews/add" method="post" novalidate>
+      <input type="hidden" name="inv_id" value="<%= vehicleData.inv_id %>">
+      
+      <label for="review_title">Review Title *</label>
+      <input 
+        type="text" 
+        id="review_title" 
+        name="review_title" 
+        maxlength="100" 
+        required
+        value="<%= locals.review_title || '' %>"
+        placeholder="Summarize your experience..."
+      >
+      
+      <label for="review_rating">Rating *</label>
+      <div class="rating-input">
+        <select id="review_rating" name="review_rating" required>
+          <option value="">Select Rating</option>
+          <option value="5" <%= locals.review_rating == '5' ? 'selected' : '' %>>⭐⭐⭐⭐⭐ (5 stars)</option>
+          <option value="4" <%= locals.review_rating == '4' ? 'selected' : '' %>>⭐⭐⭐⭐ (4 stars)</option>
+          <option value="3" <%= locals.review_rating == '3' ? 'selected' : '' %>>⭐⭐⭐ (3 stars)</option>
+          <option value="2" <%= locals.review_rating == '2' ? 'selected' : '' %>>⭐⭐ (2 stars)</option>
+          <option value="1" <%= locals.review_rating == '1' ? 'selected' : '' %>>⭐ (1 star)</option>
+        </select>
+      </div>
+      
+      <label for="review_text">Your Review *</label>
+      <textarea 
+        id="review_text" 
+        name="review_text" 
+        rows="6" 
+        maxlength="1000" 
+        required
+        placeholder="Tell us about your experience with this vehicle..."
+      ><%= locals.review_text || '' %></textarea>
+      
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+        <a href="/inv/detail/<%= vehicleData.inv_id %>" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</main>
+
+<script>
+  // Character counter for textarea
+  const textarea = document.getElementById('review_text');
+  const maxLength = 1000;
+  
+  if (textarea) {
+    const counter = document.createElement('div');
+    counter.className = 'char-counter';
+    textarea.parentNode.appendChild(counter);
+    
+    function updateCounter() {
+      const remaining = maxLength - textarea.value.length;
+      counter.textContent = `${remaining} characters remaining`;
+      counter.style.color = remaining < 50 ? '#dc3545' : '#666';
+    }
+    
+    textarea.addEventListener('input', updateCounter);
+    updateCounter();
+  }
+</script>

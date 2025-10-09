@@ -1,6 +1,55 @@
 <main>
   <h1><%= title %></h1>
+  
+  <!-- Flash messages -->
+  <%- messages() %>
+  
   <div class="detail-container">
     <%- item %>
   </div>
+  
+  <!-- Reviews Section -->
+  <% if (typeof reviewCount !== 'undefined') { %>
+  <section class="reviews-section">
+    <div class="reviews-header">
+      <h2>Customer Reviews</h2>
+      <div class="rating-summary">
+        <% if (reviewCount && reviewCount > 0) { %>
+          <div class="rating-display">
+            <% for (let i = 1; i <= 5; i++) { %>
+              <span class="star <%= i <= Math.round(avgRating || 0) ? 'filled' : '' %>">★</span>
+            <% } %>
+            <span class="rating-text">(<%= avgRating || 0 %>/5 from <%= reviewCount %> review<%= reviewCount !== 1 ? 's' : '' %>)</span>
+          </div>
+        <% } else { %>
+          <p class="no-rating">No reviews yet</p>
+        <% } %>
+      </div>
+      
+      <!-- Write Review Button -->
+      <% if (locals.loggedin) { %>
+        <% if (!hasReviewed) { %>
+          <a href="/reviews/add/<%= inv_id %>" class="btn btn-primary">Write a Review</a>
+        <% } else { %>
+          <span class="already-reviewed">✓ You've already reviewed this vehicle</span>
+        <% } %>
+      <% } else { %>
+        <a href="/account/login" class="btn btn-secondary">Login to Write Review</a>
+      <% } %>
+    </div>
+    
+    <!-- Reviews Display -->
+    <div class="reviews-container">
+      <% if (reviews && reviews.length > 0) { %>
+        <% reviews.forEach(review => { %>
+          <%- include('../partials/review-card', { review: review }) %>
+        <% }) %>
+      <% } else { %>
+        <div class="no-reviews">
+          <p>Be the first to review this vehicle!</p>
+        </div>
+      <% } %>
+    </div>
+  </section>
+  <% } %>
 </main>

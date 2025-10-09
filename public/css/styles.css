@@ -363,3 +363,436 @@ footer {
   border-radius: 6px;
   font-size: 0.9rem;
 }
+
+/* =====================
+   Review System Styles
+   ===================== */
+
+/* Reviews Section on Vehicle Detail Page */
+.reviews-section {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #f8fbff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.reviews-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.reviews-header h2 {
+  color: #222;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.rating-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rating-display {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.star {
+  font-size: 1.2rem;
+  color: #ddd;
+  transition: color 0.2s ease;
+}
+
+.star.filled {
+  color: #ffc107;
+}
+
+.rating-text {
+  font-size: 0.9rem;
+  color: #666;
+  margin-left: 0.5rem;
+}
+
+.no-rating {
+  color: #999;
+  font-style: italic;
+  margin: 0;
+}
+
+.already-reviewed {
+  color: #28a745;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Review Cards */
+.reviews-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.review-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border-left: 4px solid #0077cc;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.reviewer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.reviewer-info strong {
+  color: #333;
+  font-size: 1rem;
+}
+
+.review-date {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.review-title {
+  font-size: 1.1rem;
+  color: #0077cc;
+  margin: 0.5rem 0;
+  font-weight: 600;
+}
+
+.review-text {
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.no-reviews {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* Review Form Styles */
+.vehicle-info-card {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.vehicle-info-card img {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.vehicle-details h2 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.vehicle-details p {
+  margin: 0;
+  color: #666;
+}
+
+.review-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.review-form-container h3 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.review-form-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.review-form-container input,
+.review-form-container select,
+.review-form-container textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.review-form-container input:focus,
+.review-form-container select:focus,
+.review-form-container textarea:focus {
+  border-color: #0077cc;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.1);
+}
+
+.rating-input select {
+  background: #fff;
+  cursor: pointer;
+}
+
+.char-counter {
+  font-size: 0.85rem;
+  color: #666;
+  text-align: right;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+/* Button Styles */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn-primary {
+  background: #0077cc;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #005fa3;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+}
+
+/* Review Management Styles */
+.reviews-table-container {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+}
+
+.reviews-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.reviews-table th {
+  background: #0077cc;
+  color: #fff;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.reviews-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+
+.reviews-table tbody tr:hover {
+  background: #f8fbff;
+}
+
+.reviews-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.reviews-table tr.approved {
+  background: #f8fff8;
+}
+
+.reviews-table tr.pending {
+  background: #fff8f0;
+}
+
+.review-preview {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge.approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-badge.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.reviews-table .actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-approve {
+  background: #28a745;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.btn-approve:hover {
+  background: #218838;
+}
+
+.btn-reject {
+  background: #ffc107;
+  color: #212529;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.btn-reject:hover {
+  background: #e0a800;
+}
+
+.btn-delete {
+  background: #dc3545;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.btn-delete:hover {
+  background: #c82333;
+}
+
+/* Error Styles */
+.errors {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
+.errors li {
+  margin-bottom: 0.5rem;
+}
+
+.errors li:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive Design for Reviews */
+@media screen and (max-width: 768px) {
+  .reviews-header {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .reviews-table {
+    font-size: 0.9rem;
+  }
+  
+  .reviews-table th,
+  .reviews-table td {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .vehicle-info-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .reviews-table .actions {
+    flex-direction: column;
+  }
+}

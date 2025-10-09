@@ -22,17 +22,47 @@ invCont.buildByClassificationId = async function (req, res, next) {
  *  Build vehicle detail view
  * ************************** */
 invCont.buildDetailView = async function (req, res, next) {
-  const inv_id = req.params.invId
-  const itemData = await invModel.getInventoryById(inv_id)
-  let nav = await utilities.getNav()
-  const itemHTML = await utilities.buildDetailView(itemData)
-  const name = `${itemData.inv_year} ${itemData.inv_make} ${itemData.inv_model}`
-  
-  res.render("./inventory/detail", {
-    title: name,
-    nav,
-    item: itemHTML,
-  })
+  try {
+    const inv_id = req.params.invId
+    const itemData = await invModel.getInventoryById(inv_id)
+    let nav = await utilities.getNav()
+    const itemHTML = await utilities.buildDetailView(itemData)
+    const name = `${itemData.inv_year} ${itemData.inv_make} ${itemData.inv_model}`
+    
+    // Initialize default review data
+    let reviews = []
+    let avgRating = { avg_rating: 0, review_count: 0 }
+    let hasReviewed = false
+    
+    // Try to get reviews and rating data (may fail if table doesn't exist)
+    try {
+      const reviewModel = require("../models/review-model")
+      reviews = await reviewModel.getReviewsByVehicleId(inv_id)
+      avgRating = await reviewModel.getAverageRating(inv_id)
+      
+      // Check if user already reviewed this vehicle
+      if (res.locals.loggedin && res.locals.accountData) {
+        hasReviewed = await reviewModel.checkExistingReview(res.locals.accountData.account_id, inv_id)
+      }
+    } catch (reviewError) {
+      console.log("Review system not available:", reviewError.message)
+      // Continue without reviews if there's an error
+    }
+    
+    res.render("./inventory/detail", {
+      title: name,
+      nav,
+      item: itemHTML,
+      reviews,
+      avgRating: avgRating.avg_rating || 0,
+      reviewCount: avgRating.review_count || 0,
+      hasReviewed,
+      inv_id: itemData.inv_id
+    })
+  } catch (error) {
+    console.error("Error in buildDetailView:", error)
+    next(error)
+  }
 }
 
 // Intentional error for testing (Task 3)
